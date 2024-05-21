@@ -5,7 +5,45 @@ void main() {
   runApp(MyApp());
 }
 
+class Fruits{
+  String name, price, when;
+  Fruits(this.name, this.price, this.when);
+}
+
 class MyApp extends StatelessWidget {
+  final List<Fruits> items = [
+    Fruits('name1', 'price1', 'when1'),
+    Fruits('name2', 'price2', 'when2'),
+    Fruits('name3', 'price3', 'when3'),
+    Fruits('name4', 'price4', 'when4'),
+    Fruits('name5', 'price5', 'when5'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('List of Fruits'),
+        ),
+        body: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            final fruit = items[index];
+            return ListTile(
+              title: Text(fruit.name,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+              subtitle: Text('Price: ${fruit.price}, When: ${fruit.when}',
+                style: TextStyle(color: Colors.green),),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class Navigate extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
